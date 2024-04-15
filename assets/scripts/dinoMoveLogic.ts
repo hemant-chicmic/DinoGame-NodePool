@@ -1,5 +1,7 @@
 import {  _decorator, Component, Node, director, Vec3, view, ProgressBar, tween, Prefab, instantiate, 
-    Tween, Rect, UITransform, Intersection2D, NodePool , Vec2} from 'cc';
+    Tween, Rect, UITransform, Intersection2D, NodePool , Vec2,
+    randomRangeInt,
+    SpriteFrame} from 'cc';
 
 import { hurdle } from './hurdle';
 const { ccclass, property } = _decorator;
@@ -7,12 +9,14 @@ const { ccclass, property } = _decorator;
 @ccclass('dinoMoveLogic')
 export class dinoMoveLogic extends Component {
 
-
     @property({ type: Node })
     dinoImg: Node | null = null;
 
     @property({ type: Prefab })
     nodePrefab: Prefab | null = null;
+
+    @property({type : [SpriteFrame] })
+    hurdleimg : [SpriteFrame]|[] = [];
 
     private isFirsttime: boolean = false;
     private isAnimating: boolean = false;
@@ -20,32 +24,23 @@ export class dinoMoveLogic extends Component {
     private gameOver: boolean = false;
     private hurdlesMoveSpeed: number = 15;
     private lastHurdle : number = 0 ; 
-
-
-
-
-
-
-
-
     private nodePool1: NodePool | null = null;
    
 
     onLoad() 
     {
         this.node.on(Node.EventType.MOUSE_DOWN, this.jumpDino, this);
-
-        let dinoX = this.dinoImg.position.x ; 
-        
+        let dinoX = this.dinoImg.position.x;
         this.dinoImg.setPosition( new Vec3( dinoX , 0 , 0 ) )
-        let surfaceY = this.dinoImg.parent.position.y  ;
+        let surfaceY = this.dinoImg.parent.position.y;
+
         // Pre-instantiate nodes and add them to the pool
         this.nodePool1 = new NodePool();
         for (let i = 0; i < 7; ++i) 
         {
             let newNode = instantiate(this.nodePrefab);
             this.nodePool1.put(newNode); 
-            newNode.getComponent(hurdle).sethurdle();
+            newNode.getComponent(hurdle).sethurdle(this.hurdleimg[randomRangeInt(0, 7)]);            
             
             let widthX = (this.node.getComponent(UITransform).width + newNode.getComponent(UITransform).width)/2 ; 
             let randomRange = Math.random() * 300; 
@@ -60,9 +55,7 @@ export class dinoMoveLogic extends Component {
                 newNode.setPosition(new Vec3( this.lastHurdle + widthX + randomRange  , surfaceY , 0));
                 // console.log( widthX , " elserandom " , randomRange , " new node  " , this.lastHurdle + widthX + randomRange   ) ;   
             }      
-            // newNode.setPosition(new Vec3( 400 * (i+1), surfaceY , 0));
             this.lastHurdle = newNode.position.x ; 
-            // console.log( this.lastHurdle , "new pos ===> "  , newNode.position.x )
         }
     }
 
@@ -104,7 +97,7 @@ export class dinoMoveLogic extends Component {
                 if( hurdleNode.position.x + hurdleNode.getComponent(UITransform).width / 2 <= canvasX  )
                 {   
                     console.log( " outside scrreen " )  ;
-                    let widthX = (this.node.getComponent(UITransform).width + hurdleNode.getComponent(UITransform).width)/2 ; 
+                    let widthX = (this.node.getComponent(UITransform).width + hurdleNode.getComponent(UITransform).width)/2; 
                     let randomRange = Math.random() * 200; 
                     let newPos = new Vec3( this.lastHurdle , hurdleNodeY , 0) ; 
                     // this.lastHurdle  = this.lastHurdle +  widthX  + randomRange ; 
