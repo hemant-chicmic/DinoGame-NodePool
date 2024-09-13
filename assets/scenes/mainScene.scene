@@ -93,7 +93,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 960,
-      "y": 600,
+      "y": 720,
       "z": 0
     },
     "_lrot": {
@@ -176,7 +176,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 320,
+    "_orthoHeight": 610.5521472392638,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -943,7 +943,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1920,
-      "height": 1200
+      "height": 1440
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -983,6 +983,36 @@
       "__uuid__": "ce43ce0c-05c6-4483-877e-4c7c0f69557b",
       "__expectedType__": "cc.Prefab"
     },
+    "hurdleimg": [
+      {
+        "__uuid__": "64a3569f-36e9-4c6c-beb9-55f7714701fa@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0674858e-ab0d-4986-a2ea-9c2e31c056f2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "cc213d29-09c3-4797-85eb-0a229763319b@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "38136f32-5589-4405-bb1d-a40de5c42c94@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "4687cd0d-0b78-44b3-86b6-8fc9919fff2d@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "5a3359b1-2a68-447d-959a-f3df1d7bf11f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "060a1947-1a13-45ed-8ea2-1faa7fc8e6d1@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
     "_id": "b3rTu8B+5CvIimnuCROExH"
   },
   {

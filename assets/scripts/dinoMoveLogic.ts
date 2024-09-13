@@ -78,7 +78,7 @@ export class dinoMoveLogic extends Component {
 
     restartGame()
     {
-        console.log( "restart game " ) ; 
+        // console.log( "restart game " ) ; 
         director.loadScene("mainScene");
         Tween.stopAll();  
         
@@ -87,16 +87,16 @@ export class dinoMoveLogic extends Component {
     moveHurdle(){
         this.node.children.forEach((hurdleNode , i)=>{
             if(hurdleNode.name == 'cactus'){
-                console.log("Moving cactus");
+                // console.log("Moving cactus");
                 hurdleNode.setPosition(new Vec3(hurdleNode.getPosition().x-=this.hurdlesMoveSpeed, hurdleNode.position.y,1))
 
                 let canvasX : number  = -this.node.position.x;
-                console.log( "canvaX " ,  canvasX ) ;
+                // console.log( "canvaX " ,  canvasX ) ;
                 let hurdleNodeY = hurdleNode.position.y ; 
-                console.log(  "  hurdlenode after  " , hurdleNode.getPosition() ) ;  
+                // console.log(  "  hurdlenode after  " , hurdleNode.getPosition() ) ;  
                 if( hurdleNode.position.x + hurdleNode.getComponent(UITransform).width / 2 <= canvasX  )
                 {   
-                    console.log( " outside scrreen " )  ;
+                    // console.log( " outside scrreen " )  ;
                     let widthX = (this.node.getComponent(UITransform).width + hurdleNode.getComponent(UITransform).width)/2; 
                     let randomRange = Math.random() * 200; 
                     let newPos = new Vec3( this.lastHurdle , hurdleNodeY , 0) ; 
@@ -109,7 +109,7 @@ export class dinoMoveLogic extends Component {
                     const dinoCollider = this.dinoImg.getChildByName('collider').getComponent(UITransform).getBoundingBoxToWorld();
                     const hurdleCollider = hurdleNode.getComponent(UITransform).getBoundingBoxToWorld();
                     if (Intersection2D.rectRect(dinoCollider , hurdleCollider) ) {
-                        console.log(" collision detected!");
+                        // console.log(" collision detected!");
                         this.startGame = false;
                         this.gameOver = true;
                         Tween.stopAll();
@@ -124,7 +124,7 @@ export class dinoMoveLogic extends Component {
     }
 
     moveSurface() {
-        console.log(  "move surface 1 "  );
+        // console.log(  "move surface 1 "  );
         if( ! this.nodePool1.size() ) return  ; 
         
         // console.log(  "move surface " ,  this.nodePool1.size() );
@@ -140,12 +140,12 @@ export class dinoMoveLogic extends Component {
 
 
     jumpDino() {
-        console.log("button clicked ")
+        // console.log("button clicked ")
         if (this.isAnimating || this.gameOver || !this.dinoImg) {
             return;
         }
     
-        console.log("jump jump");
+        // console.log("jump jump");
         this.isAnimating = true;
         let x = this.dinoImg.position.x;
         let y = this.dinoImg.position.y;
